@@ -1,16 +1,28 @@
 package pl.microblog.model;
 
+import javax.persistence.*;
 import java.sql.Timestamp;
 
 /**
  * Created by sbmaniac on 07.06.2017.
  */
+@Entity
+@Table(name = "message")
 public class Message {
 
+    @Id
+    @GeneratedValue
+    @Column(name = "id_message", nullable = false)
     private long messageID;
+
+    @Column(name = "id_author", nullable = false)
     private long authorID;
+
+    @Column(name = "text", nullable = false, length = 140)
     private String text;
-    private Timestamp timestamp;
+
+    @Column(name = "publication_date", nullable = false)
+    private Timestamp publication_date;
 
     public long getMessageID() {
         return messageID;
@@ -36,11 +48,11 @@ public class Message {
         this.text = text;
     }
 
-    public Timestamp getTimestamp() {
-        return timestamp;
+    public Timestamp getPublication_date() {
+        return publication_date;
     }
 
-    public void setTimestamp(Timestamp timestamp) {
-        this.timestamp = timestamp;
+    public void setPublication_date(Timestamp publication_date) {
+        this.publication_date = publication_date;
     }
 }
