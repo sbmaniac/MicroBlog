@@ -1,4 +1,4 @@
-package dao;
+package pl.microblog.dao;
 
 import pl.microblog.model.Message;
 import pl.microblog.model.User;
