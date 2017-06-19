@@ -6,6 +6,7 @@ import pl.microblog.model.User;
 import javax.persistence.Entity;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.transaction.Transactional;
 
 /**
@@ -18,14 +19,23 @@ public class UserDaoImpl implements UserDao {
     EntityManager entityManager;
 
     @Override
-    public User getUserByUsername(User username) {
+    public User getUserByUsername(String username) {
 
 
-        return null;
+        String queryString = "SELECT u FROM user u " + "WHERE LOWER(u.username) = LOWER(:username)";
+
+        Query query = entityManager.createQuery(queryString);
+        query.setParameter("username", username);
+
+        User user = (User) query.getSingleResult();
+
+        return user;
     }
 
     @Override
     public void registerNewUser(User newUser) {
+
+        entityManager.persist(newUser);
 
     }
 }

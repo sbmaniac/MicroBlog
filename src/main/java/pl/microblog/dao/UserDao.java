@@ -7,6 +7,6 @@ import pl.microblog.model.User;
  */
 public interface UserDao {
 
-    User getUserByUsername(User username);
+    User getUserByUsername(String username);
     void registerNewUser(User newUser);
 }
